@@ -1,0 +1,28 @@
+From dc4ad20c3d14625aaf66124438d6ad014a9c14cd Mon Sep 17 00:00:00 2001
+From: "Olgierd \"Allgreed\" Kasprowicz" <olgierd@kasprowicz.pro>
+Date: Wed, 21 Oct 2020 22:31:55 +0200
+Subject: [PATCH] add configure script
+
+make it trivial to build with tools respecting the GNU autotools build
+process
+---
+ configure | 7 +++++++
+ 1 file changed, 7 insertions(+)
+ create mode 100755 configure
+
+diff --git a/configure b/configure
+new file mode 100755
+index 0000000..bc9191b
+--- /dev/null
++++ b/configure
+@@ -0,0 +1,7 @@
++#!/bin/sh
++set -ex
++PREFIX=$(echo $1 | cut -d= -f 2)
++if [ -n "$PREFIX" ]
++then
++    sed -i "s;^PREFIX.*;PREFIX = $PREFIX;g" Makefile
++fi
+-- 
+2.25.4
+
